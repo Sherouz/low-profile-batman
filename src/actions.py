@@ -59,13 +59,20 @@ def action_move(state):
 
 def action_hide(state):
     """
-    Reduce risk, no progress
+    Reduce risk with diminishing returns
     """
 
-    # risk should decrease
-    risk_reduction = random.randint(8, 15)
+    streak = state["hide_streak"]
 
-    # progress stays the same
+    if streak == 0:
+        risk_reduction = random.randint(10, 15)
+        
+    elif streak == 1:
+        risk_reduction = random.randint(5, 8)
+
+    else:
+        risk_reduction = random.randint(1, 3)
+
     state["risk"] -= risk_reduction
 
     return state

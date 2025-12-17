@@ -1,9 +1,12 @@
 # main.py
 
+import random
+
 from src.state import init_state, clamp_state, is_game_over
 from src.actions import apply_action
 from src.ui import display_state, get_player_action
 from src.result import show_result
+
 
 def run_game():
     """
@@ -31,9 +34,8 @@ def run_game():
         if action == "hide":
             if state["hide_streak"] >= 2:
                 print("You can't stay hidden forever.")
-                # hide blocked, turn still passes
-                state["turn"] += 1
-                continue
+                # hide blocked but still consumes a turn
+                state["hide_streak"] = 0
             else:
                 state["hide_streak"] += 1
         else:
@@ -43,6 +45,14 @@ def run_game():
         state = apply_action(state, action)
         state = clamp_state(state)
 
+        # High risk exposure chance
+        if state["risk"] >= 70:
+            exposure_chance = (state["risk"] - 60) / 100  # e.g. risk=80 → 0.2
+            if random.random() < exposure_chance:
+                state["risk"] = 100
+                break
+
+        # advance time (single source of turn increment)
         state["turn"] += 1
 
     show_result(state, last_action)

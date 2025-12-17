@@ -1,14 +1,29 @@
 # src/ui.py
 
+def get_risk_level(risk):
+    """Maps numeric risk value to a qualitative threat level."""
+    
+    if risk < 35:
+        return "LOW"
+    
+    elif risk < 70:
+        return "MEDIUM"
+    
+    else:
+        return "HIGH"
+
+
 def display_state(state):
     """
     Displays the current game status.
     Does NOT modify state.
     """
 
+    risk_level = get_risk_level(state['risk'])
+
     print(f"current turn: {state['turn']}")
     print(f"progress value: {state['progress']}")
-    print(f"risk value: {state['risk']}")
+    print(f"risk level: {risk_level}")
 
 
 def get_player_action():
