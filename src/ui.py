@@ -19,11 +19,11 @@ def display_state(state):
     Does NOT modify state.
     """
 
-    risk_level = get_risk_level(state['risk'])
+    risk_level = get_risk_level(state["risk"])
 
-    print(f"current turn: {state['turn']}")
-    print(f"progress value: {state['progress']}")
-    print(f"risk level: {risk_level}")
+    print(f"Turn: {state['turn']}")
+    print(f"Progress: {state['progress']}%")
+    print(f"Risk: {risk_level}")
 
 
 def get_player_action():
@@ -46,15 +46,15 @@ Choose an action:
 
         if choice in ("scan", "s"):
             return "scan"
-
+        
         elif choice in ("move", "m"):
             return "move"
-
+        
         elif choice in ("hide", "h"):
             return "hide"
-
+        
         elif choice in ("abort", "a"):
             return "abort"
-
+       
         else:
             print("Invalid choice. Try again.")

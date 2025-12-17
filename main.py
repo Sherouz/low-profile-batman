@@ -16,12 +16,12 @@ def run_game():
     state = init_state()
     last_action = None
 
-    print("\n===== Shadow Protocol Initiated =====")
+    print("\n========== Shadow Protocol Initiated ==========")
     print("Stay unseen. One wrong move ends the mission.")
 
     while not is_game_over(state):
 
-        print("\n------------------------------")
+        print("\n--- STATUS ------------------")
         display_state(state)
 
         action = get_player_action()
@@ -34,12 +34,10 @@ def run_game():
         if action == "hide":
             if state["hide_streak"] >= 2:
                 print("You can't stay hidden forever.")
-                # hide blocked but still consumes a turn
                 state["hide_streak"] = 0
             else:
                 state["hide_streak"] += 1
         else:
-            # reset streak if action is not hide
             state["hide_streak"] = 0
 
         state = apply_action(state, action)
@@ -47,12 +45,11 @@ def run_game():
 
         # High risk exposure chance
         if state["risk"] >= 70:
-            exposure_chance = (state["risk"] - 60) / 100  # e.g. risk=80 → 0.2
+            exposure_chance = (state["risk"] - 60) / 100
             if random.random() < exposure_chance:
                 state["risk"] = 100
                 break
 
-        # advance time (single source of turn increment)
         state["turn"] += 1
 
     show_result(state, last_action)

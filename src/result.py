@@ -5,7 +5,7 @@ def show_result(state, last_action):
     Displays the final outcome of the game.
     """
 
-    print("\n--- Mission Report ---\n")
+    print("\n-------- Mission Report --------\n")
 
     if last_action == "abort":
         print("Status:")
