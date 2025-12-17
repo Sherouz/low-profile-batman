@@ -5,28 +5,30 @@ def show_result(state, last_action):
     Displays the final outcome of the game.
     """
 
-    print("\n--- Mission Report ---")
+    print("\n--- Mission Report ---\n")
 
     if last_action == "abort":
+        print("Status:")
         if state["progress"] >= 60:
-            print("You aborted the mission, but extracted valuable intel.")
-            print("Outcome: Partial Success")
+            print("  Aborted with extracted intel")
+            print("\nOutcome:\n  Partial Success")
         else:
-            print("You aborted too early.")
-            print("Outcome: Failure")
+            print("  Aborted too early")
+            print("\nOutcome:\n  Failure")
 
     elif state["risk"] >= 100:
-        print("You were exposed.")
-        print("Outcome: Mission Failed")
+        print("Status:\n  Exposed")
+        print("\nOutcome:\n  Mission Failed")
 
     elif state["progress"] >= 100:
-        print("Mission completed successfully.")
-        print("Outcome: Success")
+        print("Status:\n  Objective completed")
+        print("\nOutcome:\n  Success")
 
     else:
-        print("Time ran out before completing the mission.")
-        print("Outcome: Mission Failed")
+        print("Status:\n  Time expired")
+        print("\nOutcome:\n  Mission Failed")
 
-    print(f"Final Progress: {state['progress']}")
-    print(f"Final Risk: {state['risk']}")
-    print(f"Turns Used: {state['turn'] - 1}")
+    print("\nSummary:")
+    print(f"  Progress: {state['progress']}%")
+    print(f"  Risk: {state['risk']}%")
+    print(f"  Turns Used: {state['turn'] - 1}")
