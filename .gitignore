@@ -1,49 +1,51 @@
-DS_Store/
+# --------------------
+# OS / System files
+# --------------------
 .DS_Store
-*.DS_Store
+desktop.ini
 
-.pyc
-*.pyc
-
-__pycache__
-*__pycache__
+# --------------------
+# Python bytecode
+# --------------------
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-pycache
-*pycache
-
-.vscode
-*.vscode
-
-.vs_code
-*.vs_code
-
-.env
-*.env
-
-.pytest_cache
-*.pytest_cache
-
-sandbox/
-*sandbox/
-
-logs/
-*logs/
-
-.logs
-.logs
-
-users.db
-*users.db
-
-.db
-*.db
-
+# --------------------
+# Virtual environments
+# --------------------
 venv/
-*venv/
-
-venv
-.venv
+.venv/
+env/
+.env/
 *.venv
 
-desktop.ini
+# --------------------
+# IDE / Editor settings
+# --------------------
+.vscode/
+.idea/
+*.swp
+
+# --------------------
+# Test / Tool caches
+# --------------------
+.pytest_cache/
+.mypy_cache/
+
+# --------------------
+# Logs
+# --------------------
+logs/
+*.log
+
+# --------------------
+# Databases
+# --------------------
+*.db
+
+# --------------------
+# Sandbox / experiments
+# --------------------
+sandbox/
